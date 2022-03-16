@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/chatserver.cpp.o -c /home/ccc/chat/src/server/chatserver.cpp",
+  "file": "/home/ccc/chat/src/server/chatserver.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/chatservice.cpp.o -c /home/ccc/chat/src/server/chatservice.cpp",
+  "file": "/home/ccc/chat/src/server/chatservice.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/main.cpp.o -c /home/ccc/chat/src/server/main.cpp",
+  "file": "/home/ccc/chat/src/server/main.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/usermodel.cpp.o -c /home/ccc/chat/src/server/usermodel.cpp",
+  "file": "/home/ccc/chat/src/server/usermodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/db/db.cpp.o -c /home/ccc/chat/src/server/db/db.cpp",
+  "file": "/home/ccc/chat/src/server/db/db.cpp"
+}
+]
