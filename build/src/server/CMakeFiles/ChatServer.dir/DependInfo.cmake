@@ -7,10 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ccc/chat/src/server/chatserver.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/chatserver.cpp.o"
   "/home/ccc/chat/src/server/chatservice.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/chatservice.cpp.o"
   "/home/ccc/chat/src/server/db/db.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/db/db.cpp.o"
-  "/home/ccc/chat/src/server/friendmodel.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/friendmodel.cpp.o"
   "/home/ccc/chat/src/server/main.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/main.cpp.o"
-  "/home/ccc/chat/src/server/offlinemessagemodel.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/offlinemessagemodel.cpp.o"
-  "/home/ccc/chat/src/server/usermodel.cpp" "/home/ccc/chat/build/src/server/CMakeFiles/ChatServer.dir/usermodel.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,6 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "../include/server"
   "../include/server/db"
+  "../include/server/model"
   "../thirdparty"
   )
 

@@ -6,5 +6,5 @@ CXX_FLAGS = -g -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty 
+CXX_INCLUDES = -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty 
 
