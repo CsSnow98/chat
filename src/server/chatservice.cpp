@@ -8,18 +8,21 @@ using namespace muduo;
 using namespace muduo::net;
 using namespace std;
 
+// 获取单例对象的接口函数
 ChatService *ChatService::instance()
 {
     static ChatService service;
     return &service;
 }
 
+// 注册消息已经对应的回调操作
 ChatService::ChatService()
 {
     _msgHandlerMap.insert({LOGIN_MSG, std::bind(&ChatService::login, this, _1, _2, _3)});
     _msgHandlerMap.insert({REG_MSG, std::bind(&ChatService::reg, this, _1, _2, _3)});
 }  
 
+// 获取消息处理器
 MsgHandler ChatService::getHandler(int msgid){
     auto it = _msgHandlerMap.find(msgid);
     if (it == _msgHandlerMap.end())
@@ -34,6 +37,7 @@ MsgHandler ChatService::getHandler(int msgid){
     }
 }
 
+// 登录
 void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
 {
     int id = js["id"];
@@ -78,6 +82,7 @@ void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
     }
 }
 
+// 注册
 void ChatService::reg(const TcpConnectionPtr &conn, json &js, Timestamp time)
 {
     string name = js["name"];
@@ -105,3 +110,28 @@ void ChatService::reg(const TcpConnectionPtr &conn, json &js, Timestamp time)
     }
 }
 
+// 客户端异常退出
+void ChatService::clientCloseException(const TcpConnectionPtr &conn)
+{
+    User user;
+    {
+        lock_guard<mutex> lock(_connMutex);
+        for (auto it = _userConnMap.begin(); it != _userConnMap.end(); it ++)
+        {
+            if (it->second == conn)
+            {
+                // 删除用户链接信息
+                user.setId(it->first);
+                _userConnMap.erase(it);
+                break;
+            }
+        }
+    }
+
+    // 更新数据库用户信息
+    if (user.getId() != -1)
+    {
+        user.setState("offline");
+        _userModel.updateState(user);
+    }
+}

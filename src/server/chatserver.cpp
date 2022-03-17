@@ -17,21 +17,23 @@ ChatServer::ChatServer(EventLoop *loop,
     _server.setMessageCallback(std::bind(&ChatServer::onMessage, this, _1, _2, _3));
     _server.setThreadNum(4);
 }
-// {"msgid":3,"name":"wan er","password":"666666"}
-// {"msgid":1,"id":13,"password":"123456"}
-// {"msgid":1,"id":19,"password":"123456"}
+
 void ChatServer::start()
 {
     _server.start();
 }
 
+// 上报链接相关信息的回调函数
 void ChatServer::onConnection(const TcpConnectionPtr &conn)
 {
     if (!conn->connected()) 
     {
+        ChatService::instance()->clientCloseException(conn);
         conn->shutdown();
     } 
 }
+
+// 上报读写事件相关信息的回调函数
 void ChatServer::onMessage(const TcpConnectionPtr &conn,
                Buffer *buffer,
                Timestamp time)
