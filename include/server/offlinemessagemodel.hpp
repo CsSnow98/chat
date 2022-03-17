@@ -15,8 +15,8 @@ public:
     void remove(int userid);
     // 查询
     vector<string> query(int userid);
-private:
 
+private:
 };
 
 #endif

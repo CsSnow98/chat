@@ -26,17 +26,17 @@ void ChatServer::start()
 // 上报链接相关信息的回调函数
 void ChatServer::onConnection(const TcpConnectionPtr &conn)
 {
-    if (!conn->connected()) 
+    if (!conn->connected())
     {
         ChatService::instance()->clientCloseException(conn);
         conn->shutdown();
-    } 
+    }
 }
 
 // 上报读写事件相关信息的回调函数
 void ChatServer::onMessage(const TcpConnectionPtr &conn,
-               Buffer *buffer,
-               Timestamp time)
+                           Buffer *buffer,
+                           Timestamp time)
 {
     string buf = buffer->retrieveAllAsString();
     json js = json::parse(buf);

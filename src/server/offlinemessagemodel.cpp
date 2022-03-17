@@ -1,8 +1,6 @@
 #include "offlinemessagemodel.hpp"
 #include "db.h"
 
-
-
 // 存储
 void OfflineMsgModel::insert(int userid, string msg)
 {

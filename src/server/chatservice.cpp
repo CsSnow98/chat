@@ -21,14 +21,22 @@ ChatService::ChatService()
     _msgHandlerMap.insert({LOGIN_MSG, std::bind(&ChatService::login, this, _1, _2, _3)});
     _msgHandlerMap.insert({REG_MSG, std::bind(&ChatService::reg, this, _1, _2, _3)});
     _msgHandlerMap.insert({ONE_CHAT_MSG, std::bind(&ChatService::oneChat, this, _1, _2, _3)});
-}  
+}
+
+// 服务器异常退出重置
+void ChatService::reset()
+{
+    _userModel.resetState();
+}
 
 // 获取消息处理器
-MsgHandler ChatService::getHandler(int msgid){
+MsgHandler ChatService::getHandler(int msgid)
+{
     auto it = _msgHandlerMap.find(msgid);
     if (it == _msgHandlerMap.end())
     {
-        return [=](const TcpConnectionPtr &conn, json &js, Timestamp){
+        return [=](const TcpConnectionPtr &conn, json &js, Timestamp)
+        {
             LOG_ERROR << "msgid" << msgid << "can not find handler!!!";
         };
     }
@@ -125,7 +133,7 @@ void ChatService::clientCloseException(const TcpConnectionPtr &conn)
     User user;
     {
         lock_guard<mutex> lock(_connMutex);
-        for (auto it = _userConnMap.begin(); it != _userConnMap.end(); it ++)
+        for (auto it = _userConnMap.begin(); it != _userConnMap.end(); it++)
         {
             if (it->second == conn)
             {
@@ -155,7 +163,7 @@ void ChatService::oneChat(const TcpConnectionPtr &conn, json &js, Timestamp time
         auto it = _userConnMap.find(toid);
         if (it != _userConnMap.end())
         {
-            // toid在线，转发消息 
+            // toid在线，转发消息
             it->second->send(js.dump());
             return;
         }

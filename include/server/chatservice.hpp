@@ -31,6 +31,8 @@ public:
     void clientCloseException(const TcpConnectionPtr &conn);
     // 一对一聊天业务
     void oneChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 服务器异常重置
+    void reset();
     // 获取事件分发器
     MsgHandler getHandler(int msgid);
 
