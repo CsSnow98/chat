@@ -16,6 +16,11 @@
 },
 {
   "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/offlinemessagemodel.cpp.o -c /home/ccc/chat/src/server/offlinemessagemodel.cpp",
+  "file": "/home/ccc/chat/src/server/offlinemessagemodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
   "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/usermodel.cpp.o -c /home/ccc/chat/src/server/usermodel.cpp",
   "file": "/home/ccc/chat/src/server/usermodel.cpp"
 },

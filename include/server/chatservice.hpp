@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include "usermodel.hpp"
 #include <mutex>
+#include "offlinemessagemodel.hpp"
 
 using namespace muduo;
 using namespace muduo::net;
@@ -43,6 +44,7 @@ private:
     mutex _connMutex;
     // 数据操作类对象
     UserModel _userModel;
+    OfflineMsgModel _offlineMsgModel;
 };
 
 #endif

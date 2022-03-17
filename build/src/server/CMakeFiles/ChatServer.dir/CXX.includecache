@@ -25,11 +25,19 @@ usermodel.hpp
 ../include/server/usermodel.hpp
 mutex
 -
+offlinemessagemodel.hpp
+../include/server/offlinemessagemodel.hpp
 
 ../include/server/db/db.h
 mysql/mysql.h
 -
 string
+-
+
+../include/server/offlinemessagemodel.hpp
+string
+-
+vector
 -
 
 ../include/server/user.hpp
@@ -391,10 +399,10 @@ public.hpp
 /home/ccc/chat/src/server/public.hpp
 muduo/base/Logging.h
 -
+vector
+-
 functional
 -
-usermodel.hpp
-/home/ccc/chat/src/server/usermodel.hpp
 
 /home/ccc/chat/src/server/db/db.cpp
 db.h
@@ -407,6 +415,12 @@ chatserver.hpp
 /home/ccc/chat/src/server/chatserver.hpp
 iostream
 -
+
+/home/ccc/chat/src/server/offlinemessagemodel.cpp
+offlinemessagemodel.hpp
+/home/ccc/chat/src/server/offlinemessagemodel.hpp
+db.h
+/home/ccc/chat/src/server/db.h
 
 /home/ccc/chat/src/server/usermodel.cpp
 usermodel.hpp
