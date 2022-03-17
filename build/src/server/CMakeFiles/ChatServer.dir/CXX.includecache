@@ -27,11 +27,19 @@ mutex
 -
 offlinemessagemodel.hpp
 ../include/server/offlinemessagemodel.hpp
+friendmodel.hpp
+../include/server/friendmodel.hpp
 
 ../include/server/db/db.h
 mysql/mysql.h
 -
 string
+-
+
+../include/server/friendmodel.hpp
+user.hpp
+../include/server/user.hpp
+vector
 -
 
 ../include/server/offlinemessagemodel.hpp
@@ -409,6 +417,12 @@ db.h
 /home/ccc/chat/src/server/db/db.h
 muduo/base/Logging.h
 -
+
+/home/ccc/chat/src/server/friendmodel.cpp
+friendmodel.hpp
+/home/ccc/chat/src/server/friendmodel.hpp
+db.h
+/home/ccc/chat/src/server/db.h
 
 /home/ccc/chat/src/server/main.cpp
 chatserver.hpp

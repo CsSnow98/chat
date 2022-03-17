@@ -8,6 +8,7 @@
 #include "usermodel.hpp"
 #include <mutex>
 #include "offlinemessagemodel.hpp"
+#include "friendmodel.hpp"
 
 using namespace muduo;
 using namespace muduo::net;
@@ -31,6 +32,8 @@ public:
     void clientCloseException(const TcpConnectionPtr &conn);
     // 一对一聊天业务
     void oneChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 添加好友
+    void addFriend(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 服务器异常重置
     void reset();
     // 获取事件分发器
@@ -47,6 +50,7 @@ private:
     // 数据操作类对象
     UserModel _userModel;
     OfflineMsgModel _offlineMsgModel;
+    FriendModel _friendModel;
 };
 
 #endif
