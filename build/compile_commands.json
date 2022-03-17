@@ -18,5 +18,30 @@
   "directory": "/home/ccc/chat/build/src/server",
   "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/db/db.cpp.o -c /home/ccc/chat/src/server/db/db.cpp",
   "file": "/home/ccc/chat/src/server/db/db.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/friendmodel.cpp.o -c /home/ccc/chat/src/server/model/friendmodel.cpp",
+  "file": "/home/ccc/chat/src/server/model/friendmodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/groupmodel.cpp.o -c /home/ccc/chat/src/server/model/groupmodel.cpp",
+  "file": "/home/ccc/chat/src/server/model/groupmodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/offlinemessagemodel.cpp.o -c /home/ccc/chat/src/server/model/offlinemessagemodel.cpp",
+  "file": "/home/ccc/chat/src/server/model/offlinemessagemodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/server",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/usermodel.cpp.o -c /home/ccc/chat/src/server/model/usermodel.cpp",
+  "file": "/home/ccc/chat/src/server/model/usermodel.cpp"
+},
+{
+  "directory": "/home/ccc/chat/build/src/client",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/ccc/chat/include -I/home/ccc/chat/include/server -I/home/ccc/chat/include/server/db -I/home/ccc/chat/include/server/model -I/home/ccc/chat/thirdparty  -g -g   -o CMakeFiles/ChatClient.dir/main.cpp.o -c /home/ccc/chat/src/client/main.cpp",
+  "file": "/home/ccc/chat/src/client/main.cpp"
 }
 ]
