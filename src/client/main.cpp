@@ -171,15 +171,15 @@ int main(int argc, char **argv)
 
                         showCurrentUserData();
 
-                        if (responsejs.contains("offlinemsg"))
+                        if (responsejs.contains("offlinemessage"))
                         {
-                            vector<string> vec = responsejs["offlinemsg"];
+                            vector<string> vec = responsejs["offlinemessage"];
                             for (string &str : vec)
                             {
                                 json js = json::parse(str);
-                                if (ONE_CHAT_MSG == js["msgid"])
+                                if (ONE_CHAT_MSG == js["msgid"].get<int>())
                                 {
-                                    cout << js["time"].get<string>() << " [" << js["id"] << "[" << js["name"].get<string>() << "said: " << js["msg"].get<string>() << endl;
+                                    cout << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>() << "said: " << js["msg"].get<string>() << endl;
                                 }
                             }
                         }
@@ -294,7 +294,8 @@ void readTaskHandler(int clientid)
         }
 
         json js = json::parse(buffer);
-        if (ONE_CHAT_MSG == js["msgid"])
+        int msgtype = js["msgid"].get<int>();
+        if (ONE_CHAT_MSG == msgtype)
         {
             cout << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>()
                  << " said: " << js["msg"].get<string>() << endl;
