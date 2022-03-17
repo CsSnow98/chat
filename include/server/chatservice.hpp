@@ -28,6 +28,8 @@ public:
     void reg(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 客户端异常退出
     void clientCloseException(const TcpConnectionPtr &conn);
+    // 一对一聊天业务
+    void oneChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 获取事件分发器
     MsgHandler getHandler(int msgid);
 
