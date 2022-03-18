@@ -84,8 +84,9 @@ int main(int argc, char **argv)
         cout << "3. quit" << endl;
         cout << "****************************" << endl;
         cout << "choice:";
-        int choice = 0;
-        cin >> choice;
+        string str;
+        cin >> str;
+        int choice = atoi(str.c_str());
         cin.get();
 
         switch (choice)
