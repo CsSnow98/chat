@@ -41,6 +41,8 @@ public:
     void addGroup(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 群组聊天
     void groupChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 客户端登出
+    void loginout(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 服务器异常重置
     void reset();
     // 获取事件分发器

@@ -25,6 +25,7 @@ ChatService::ChatService()
     _msgHandlerMap.insert({CREATE_GROUP_MSG, std::bind(&ChatService::createGroup, this, _1, _2, _3)});
     _msgHandlerMap.insert({ADD_GROUP_MSG, std::bind(&ChatService::addGroup, this, _1, _2, _3)});
     _msgHandlerMap.insert({GROUP_CHAT_MSG, std::bind(&ChatService::groupChat, this, _1, _2, _3)});
+    _msgHandlerMap.insert({LOGINOUT_MSG, std::bind(&ChatService::loginout, this, _1, _2, _3)});
 }
 
 // 服务器异常退出重置
@@ -133,7 +134,7 @@ void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
 
                 response["groups"] = groupV;
             }
-            
+
             conn->send(response.dump());
         }
     }
@@ -241,11 +242,10 @@ void ChatService::createGroup(const TcpConnectionPtr &conn, json &js, Timestamp 
     string desc = js["groupdesc"];
 
     Group group(-1, name, desc);
-    if(_groupModel.createGroup(group))
+    if (_groupModel.createGroup(group))
     {
-        _groupModel.addGroup(userid, group.getId(),"creator");
+        _groupModel.addGroup(userid, group.getId(), "creator");
     }
-    
 }
 
 // 加入群组
@@ -276,4 +276,21 @@ void ChatService::groupChat(const TcpConnectionPtr &conn, json &js, Timestamp ti
             _offlineMsgModel.insert(id, js.dump());
         }
     }
+}
+
+// 登出
+void ChatService::loginout(const TcpConnectionPtr &conn, json &js, Timestamp time)
+{
+    int userid = js["id"];
+    {
+        lock_guard<mutex> lock(_connMutex);
+        auto it = _userConnMap.find(userid);
+        if (it != _userConnMap.end())
+        {
+            _userConnMap.erase(it);
+        }
+    }
+
+    User user(userid, "", "", "offline");
+    _userModel.updateState(user);
 }

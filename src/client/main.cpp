@@ -29,6 +29,12 @@ vector<User> g_currentUserFriendList;
 // 记录当前登录用户的群组列表信息
 vector<Group> g_currentUserGroupList;
 
+// 控制主菜单页面程序
+bool isMainMenuRunning = false;
+
+// 记录登录状态
+atomic_bool g_isLoginSuccess{false};
+
 // 接收线程
 void readTaskHandler(int clientfd);
 // 获取系统时间（聊天信息需要添加时间信息）
@@ -100,6 +106,8 @@ int main(int argc, char **argv)
             js["password"] = pwd;
             string request = js.dump();
 
+            g_isLoginSuccess = false;
+
             int len = send(clientfd, request.c_str(), strlen(request.c_str()) + 1, 0);
             if (len == -1)
             {
@@ -119,9 +127,11 @@ int main(int argc, char **argv)
                     if (0 != responsejs["errno"].get<int>())
                     {
                         cerr << responsejs["errmsg"] << endl;
+                        g_isLoginSuccess = false;
                     }
                     else
                     {
+
                         g_currentUser.setId(responsejs["id"]);
                         g_currentUser.setName(responsejs["name"]);
 
@@ -189,10 +199,15 @@ int main(int argc, char **argv)
                             }
                         }
 
+                        g_isLoginSuccess = true;
+
                         std::thread readTask(readTaskHandler, clientfd);
                         readTask.detach();
-
-                        mainMenu(clientfd);
+                        if (g_isLoginSuccess)
+                        {
+                            isMainMenuRunning = true;
+                            mainMenu(clientfd);
+                        }
                     }
                 }
             }
@@ -243,15 +258,11 @@ int main(int argc, char **argv)
         }
         break;
         case 3:
-        {
             close(clientfd);
             exit(0);
-        }
         default:
-        {
             cerr << "invalid input!" << endl;
             break;
-        }
         }
     }
     return 0;
@@ -357,7 +368,7 @@ void mainMenu(int clientfd)
     help();
 
     char buffer[1024] = {0};
-    for (;;)
+    while (isMainMenuRunning)
     {
         cin.getline(buffer, 1024);
         string commandbuf(buffer);
@@ -524,4 +535,18 @@ void groupchat(int clientfd, string str)
 // "loginout" command handler
 void loginout(int clientfd, string str)
 {
+    json js;
+    js["msgid"] = LOGINOUT_MSG;
+    js["id"] = g_currentUser.getId();
+    string buffer = js.dump();
+
+    int len = send(clientfd, buffer.c_str(), strlen(buffer.c_str()) + 1, 0);
+    if (-1 == len)
+    {
+        cerr << "send loginout msg error -> " << buffer << endl;
+    }
+    else
+    {
+        isMainMenuRunning = false;
+    }
 }
