@@ -31,6 +31,8 @@ friendmodel.hpp
 ../include/server/friendmodel.hpp
 groupmodel.hpp
 ../include/server/groupmodel.hpp
+redis.hpp
+../include/server/redis.hpp
 
 ../include/server/db/db.h
 mysql/mysql.h
@@ -75,6 +77,14 @@ string
 ../include/server/model/usermodel.hpp
 user.hpp
 ../include/server/model/user.hpp
+
+../include/server/redis/redis.hpp
+hiredis/hiredis.h
+-
+thread
+-
+functional
+-
 
 ../thirdparty/json.hpp
 algorithm
@@ -471,6 +481,12 @@ usermodel.hpp
 /home/ccc/chat/src/server/model/usermodel.hpp
 db.h
 /home/ccc/chat/src/server/model/db.h
+iostream
+-
+
+/home/ccc/chat/src/server/redis/redis.cpp
+redis.hpp
+/home/ccc/chat/src/server/redis/redis.hpp
 iostream
 -
 

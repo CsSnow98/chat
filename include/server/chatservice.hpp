@@ -10,6 +10,7 @@
 #include "offlinemessagemodel.hpp"
 #include "friendmodel.hpp"
 #include "groupmodel.hpp"
+#include "redis.hpp"
 
 using namespace muduo;
 using namespace muduo::net;
@@ -48,6 +49,8 @@ public:
     // 获取事件分发器
     MsgHandler getHandler(int msgid);
 
+    void handleRedisSubscribeMessage(int, string);
+
 private:
     ChatService();
     // 存储消息id和对应的业务处理办法
@@ -61,6 +64,8 @@ private:
     OfflineMsgModel _offlineMsgModel;
     FriendModel _friendModel;
     GroupModel _groupModel;
+
+    Redis _redis;
 };
 
 #endif
