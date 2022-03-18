@@ -145,7 +145,7 @@ int main(int argc, char **argv)
                         {
                             g_currentUserGroupList.clear();
 
-                            vector<string> vec1 = responsejs["group"];
+                            vector<string> vec1 = responsejs["groups"];
                             for (string &groupstr : vec1)
                             {
                                 json groupjs = json::parse(groupstr);
@@ -180,6 +180,11 @@ int main(int argc, char **argv)
                                 if (ONE_CHAT_MSG == js["msgid"].get<int>())
                                 {
                                     cout << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>() << "said: " << js["msg"].get<string>() << endl;
+                                }
+                                else
+                                {
+                                    cout << "群消息[" << js["groupid"] << "]:" << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>()
+                                         << " said: " << js["msg"].get<string>() << endl;
                                 }
                             }
                         }
@@ -298,6 +303,13 @@ void readTaskHandler(int clientid)
         if (ONE_CHAT_MSG == msgtype)
         {
             cout << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>()
+                 << " said: " << js["msg"].get<string>() << endl;
+            continue;
+        }
+
+        if (GROUP_CHAT_MSG == msgtype)
+        {
+            cout << "群消息[" << js["groupid"] << "]:" << js["time"].get<string>() << " [" << js["id"] << "]" << js["name"].get<string>()
                  << " said: " << js["msg"].get<string>() << endl;
             continue;
         }
@@ -441,14 +453,73 @@ string getCurrentTime()
 // "creategroup" command handler
 void creategroup(int clientfd, string str)
 {
+    int idx = str.find(":");
+    if (-1 == idx)
+    {
+        cerr << "creategroup command invaild!" << endl;
+        return;
+    }
+
+    string groupname = str.substr(0, idx);
+    string groupdesc = str.substr(idx + 1, str.size() - idx);
+
+    json js;
+    js["msgid"] = CREATE_GROUP_MSG;
+    js["id"] = g_currentUser.getId();
+    js["groupname"] = groupname;
+    js["groupdesc"] = groupdesc;
+    string buffer = js.dump();
+
+    int len = send(clientfd, buffer.c_str(), strlen(buffer.c_str()) + 1, 0);
+    if (-1 == len)
+    {
+        cerr << "send creategroup msg error -> " << buffer << endl;
+    }
 }
 // "addgroup" command handler
 void addgroup(int clientfd, string str)
 {
+    int groupid = atoi(str.c_str());
+
+    json js;
+    js["msgid"] = ADD_GROUP_MSG;
+    js["id"] = g_currentUser.getId();
+    js["groupid"] = groupid;
+    string buffer = js.dump();
+
+    int len = send(clientfd, buffer.c_str(), strlen(buffer.c_str()) + 1, 0);
+    if (-1 == len)
+    {
+        cerr << "send addgroup msg error -> " << buffer << endl;
+    }
 }
 // "groupchat" command handler
 void groupchat(int clientfd, string str)
 {
+    int idx = str.find(":");
+    if (-1 == idx)
+    {
+        cerr << "groupchat command invalid!" << endl;
+        return;
+    }
+
+    int groupid = atoi(str.substr(0, idx).c_str());
+    string message = str.substr(idx + 1, str.size() - idx);
+
+    json js;
+    js["msgid"] = GROUP_CHAT_MSG;
+    js["groupid"] = groupid;
+    js["id"] = g_currentUser.getId();
+    js["name"] = g_currentUser.getName();
+    js["msg"] = message;
+    js["time"] = getCurrentTime();
+    string buffer = js.dump();
+
+    int len = send(clientfd, buffer.c_str(), strlen(buffer.c_str()) + 1, 0);
+    if (-1 == len)
+    {
+        cerr << "send groupchat msg error -> " << buffer << endl;
+    }
 }
 // "loginout" command handler
 void loginout(int clientfd, string str)
