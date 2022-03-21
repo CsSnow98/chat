@@ -4,7 +4,12 @@
         "functional": "cpp",
         "sstream": "cpp",
         "thread": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "bitset": "cpp",
+        "fstream": "cpp",
+        "stdexcept": "cpp",
+        "tuple": "cpp",
+        "typeinfo": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

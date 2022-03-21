@@ -44,6 +44,8 @@ public:
     void groupChat(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 客户端登出
     void loginout(const TcpConnectionPtr &conn, json &js, Timestamp time);
+    // 压力测试
+    void test(const TcpConnectionPtr &conn, json &js, Timestamp time);
     // 服务器异常重置
     void reset();
     // 获取事件分发器

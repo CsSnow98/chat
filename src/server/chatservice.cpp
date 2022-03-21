@@ -26,6 +26,7 @@ ChatService::ChatService()
     _msgHandlerMap.insert({ADD_GROUP_MSG, std::bind(&ChatService::addGroup, this, _1, _2, _3)});
     _msgHandlerMap.insert({GROUP_CHAT_MSG, std::bind(&ChatService::groupChat, this, _1, _2, _3)});
     _msgHandlerMap.insert({LOGINOUT_MSG, std::bind(&ChatService::loginout, this, _1, _2, _3)});
+    _msgHandlerMap.insert({TEST_MSG, std::bind(&ChatService::test, this, _1, _2, _3)});
 
     if (_redis.connect())
     {
@@ -326,4 +327,12 @@ void ChatService::handleRedisSubscribeMessage(int userid, string msg)
 
     // 存储该用户的离线消息
     _offlineMsgModel.insert(userid, msg);
+}
+
+void ChatService::test(const TcpConnectionPtr &conn, json &js, Timestamp time)
+{
+    json response;
+    response["msg"] = "hello";
+    conn->send(response.dump());
+    // conn->shutdown();
 }

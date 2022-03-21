@@ -14,6 +14,7 @@ enum EnMsgType
     CREATE_GROUP_MSG, // 创建群组8
     ADD_GROUP_MSG, // 加入群组9
     GROUP_CHAT_MSG, // 群聊天10
+    TEST_MSG,    //压力测试11
 };
 
 #endif
