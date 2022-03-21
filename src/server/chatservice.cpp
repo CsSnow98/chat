@@ -310,7 +310,7 @@ void ChatService::loginout(const TcpConnectionPtr &conn, json &js, Timestamp tim
             _userConnMap.erase(it);
         }
     }
-    _redis.unsubscribe(userid); 
+    _redis.unsubscribe(userid);
     User user(userid, "", "", "offline");
     _userModel.updateState(user);
 }
@@ -334,5 +334,4 @@ void ChatService::test(const TcpConnectionPtr &conn, json &js, Timestamp time)
     json response;
     response["msg"] = "hello";
     conn->send(response.dump());
-    // conn->shutdown();
 }
