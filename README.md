@@ -19,7 +19,7 @@
 7. 客户端跨服务器通信
 
 ## 整体架构
-
+![简略架构图](https://github.com/CsSnow98/chat/blob/main/%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
 
 
 ## 开发环境配置
