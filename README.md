@@ -7,6 +7,7 @@
 * nginx的tcp负载均衡器配置
 * 基于发布-订阅的服务器中间件redis消息队列
 * MySQL数据库编程
+* Jmeter简单压力测试
 
 ## 实现的业务功能
 1. 新用户注册
@@ -30,3 +31,4 @@
 6. [安装nginx](https://blog.csdn.net/qq_37973665/article/details/123390074?spm=1001.2014.3001.5502)
 7. [安装CMake环境](https://blog.csdn.net/qq_37973665/article/details/123392305?spm=1001.2014.3001.5502)
 8. [windows10+vscode进行linux远程开发与调试](https://blog.csdn.net/qq_37973665/article/details/123394774?spm=1001.2014.3001.5502)
+9. [Jmeter安装与使用](https://blog.csdn.net/qq_37973665/article/details/123638833)
